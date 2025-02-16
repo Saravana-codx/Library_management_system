@@ -1,0 +1,131 @@
+#include<stdio.h>
+#include<string.h>
+#define max_books_stored 2
+//int count=0;
+int i;
+struct books
+{
+char name[50];
+char author[50];
+int book_id;
+};
+int book_list(struct books info[])
+{
+   if(i==0)
+     printf("No books are there in the library");
+    else
+{
+     for(int j=0;j<i;j++)
+    {
+        printf("\nname of the book:%s",info[j].name);
+        printf("\nAuthor :%s",info[j].author);
+        printf("\nThe ID of book is :%d",info[j].book_id);
+        printf("\n");
+    }
+
+}
+
+
+
+   }
+
+
+int adding_books(int count,struct books info[])
+{
+//if(count>=max_books_stored)
+//printf("These many books cant be stored\n");
+//else
+//{
+struct books new;
+printf("\nenter the name of the book(only first name):");
+scanf("%s",new.name);
+
+printf("enter the author(only first name):");
+scanf("%s",new.author);
+
+printf("enter the book id:");
+scanf("%d",&new.book_id);
+info[count]=new;
+printf("\tBook added succesfully\n");
+//count++;
+//}
+}
+int search_book(int book_id,struct books info[])
+{
+    int x=0;
+for(int i=0;i< max_books_stored;i++)
+{
+if(book_id==info[i].book_id)
+{
+printf("\nbook found");
+printf("\nname:%s",info[i].name);
+printf("\nauthor:%s",info[i].author);
+x=1;
+break;
+}
+
+}
+if(x==0)
+printf("\nbook not found\n");
+}
+int main()
+{
+//int i=0;
+i=0;
+int choice;
+struct books info[max_books_stored];
+//info[0].name='\0' ;
+  //    info[0].author='\0' ;
+    //  info[0].book_id=0;
+while(1)
+{
+    printf("\t\nSELECT THE OPTION YOU WANT\n");
+printf("----------------------------\n");
+printf("\n1>Adding new books:");
+printf("\n2>search any book:");
+printf("\n3>See all books:");
+printf("\n4>EXIT\n");
+
+printf("press any option you want (1,2,3,4) - ");
+scanf("%d",&choice);
+if(choice<0 || choice>4)
+printf("-----invalid option-----");
+else
+{
+switch(choice)
+{
+case 1:
+{
+if( i<max_books_stored)
+{
+adding_books(i,info);
+i++;
+}
+else
+printf("\nmax book are stored..No more can be done");
+break;
+}
+
+case 2:
+{
+printf("\n Enter the id of the book:");
+int id;
+scanf("%d",&id);
+search_book(id,info);
+break;
+}
+case 3:
+   {
+      book_list(info);
+    break;
+   }
+
+case 4:
+printf("\n---EXITING---\n");
+exit(0);
+default:
+printf("\nINVALID QUESTIONS GIVEN");
+}
+}
+}
+}
